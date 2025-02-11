@@ -1,0 +1,20 @@
+services:
+  nginx:
+    image: nginx:latest
+    depends_on:
+      - application
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx/config/default.conf:/etc/nginx/conf.d/default.conf:ro
+    healthcheck:
+      test: [ "CMD-SHELL", "wget -O /dev/null http://localhost || exit 1" ]
+      timeout: 5s
+
+  application:
+    build: ./application/.
+    expose:
+      - "8080"
+    healthcheck:
+      test: [ "CMD-SHELL", "wget -O /dev/null http://localhost:8080 || exit 1" ]
+      timeout: 5s
