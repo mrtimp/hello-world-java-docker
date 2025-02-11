@@ -1,18 +1,18 @@
-# A Containerized Hello World Java deployment with Docker 
+# Simple Java Hello World example
 
-a very simple rest-api-hello-world java application with Spring Boot and Maven, containerized with dockerfile, ready to build and deployed with a very simple way.
+This is based off https://github.com/edwin/hello-world-java-docker/tree/master.
 
-## How to Build
-```
-docker build -t hello-world-java-docker .
-```  
+# Building/starting
 
-## How to Run
-```
-docker run -it hello-world-java-docker
+You should be able to control containers using docker compose, this will pull/build the respective
+containers if they do not already exist.
+
+```bash
+docker compose up
 ```
 
-## Blog Post
-```
-https://edwin.baculsoft.com/2020/07/building-containerized-images-on-openshift-4-and-push-the-result-to-third-party-image-registry/
+# Testing
+
+```bash
+curl -s http://localhost:8080/ | jq
 ```
